@@ -32,30 +32,13 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a 
-                href="https://apps.apple.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="transition-transform hover:scale-105"
-              >
-                <img 
-                  src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                  alt="Download on the App Store" 
-                  className="h-12"
-                />
-              </a>
-              <a 
-                href="https://play.google.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="transition-transform hover:scale-105"
-              >
-                <img 
-                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                  alt="Get it on Google Play" 
-                  className="h-12"
-                />
-              </a>
+              <Button size="lg" className="gap-2">
+                Start Learning Free
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Button size="lg" variant="outline">
+                See How It Works
+              </Button>
             </div>
             
             <div className="mt-8 flex items-center gap-6 justify-center lg:justify-start text-sm text-muted-foreground">
