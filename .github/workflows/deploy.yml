@@ -33,8 +33,8 @@ jobs:
       - name: Build
         run: bun run build
         env:
-          # Use VITE_BASE_URL repo variable when a custom domain is used ("/" for root).
-          VITE_BASE_URL: ${{ vars.VITE_BASE_URL || format('/{0}/', github.event.repository.name) }}
+          # Default to "/" for custom domains. Override via repo variable if needed.
+          VITE_BASE_URL: ${{ vars.VITE_BASE_URL || '/' }}
           APP_RECAPTCHA_SITE_KEY: ${{ secrets.APP_RECAPTCHA_SITE_KEY }}
           APP_N8N_WEBHOOK_URL: ${{ secrets.APP_N8N_WEBHOOK_URL }}
 

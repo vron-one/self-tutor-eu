@@ -32,12 +32,16 @@ These are used at build time to generate `public/config.js`.
 
 ### 3) Base URL for GitHub Pages
 
-GitHub Pages serves your site under `/<repo-name>/`, so the build must use
-the correct base path. The workflow sets:
+Set a repo variable so Vite builds with the correct base path.
 
-- `VITE_BASE_URL=/${{ github.event.repository.name }}/`
+**Custom domain (apex or www):**
+- `VITE_BASE_URL=/`
 
-This is read by `vite.config.ts` and ensures asset URLs resolve correctly.
+**GitHub Pages default URL (`https://<owner>.github.io/<repo>/`):**
+- `VITE_BASE_URL=/<repo-name>/`
+
+The workflow reads this repo variable and `vite.config.ts` uses it as `base`
+so asset URLs resolve correctly.
 
 ### 4) Trigger a Deployment
 
