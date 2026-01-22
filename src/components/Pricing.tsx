@@ -1,77 +1,69 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
-
-interface Plan {
-  name: string;
-  price: string;
-  period: string;
-  description: string;
-  features: string[];
-  cta: string;
-  popular: boolean;
-  comingSoon?: boolean;
-}
-
-const plans: Plan[] = [
-  {
-    name: "Free",
-    price: "€0",
-    period: "forever",
-    description: "Perfect to get started",
-    features: [
-      "2 card decks",
-      "50 cards per deck",
-      "Basic quizzes",
-      "Excel import",
-      "Progress tracking",
-    ],
-    cta: "Start Free",
-    popular: false,
-  },
-  {
-    name: "Pro",
-    price: "€9.50",
-    period: "one-time",
-    description: "Pay once, learn forever",
-    features: [
-      "Unlimited decks & cards",
-      "Excel import & export",
-      "Advanced quizzes",
-      "Spaced repetition",
-      "Language reading mode",
-      "Offline access",
-      "No limits except your phone storage",
-    ],
-    cta: "Go Pro",
-    popular: true,
-  },
-  {
-    name: "AI Subscription",
-    price: "€3",
-    period: "/month",
-    description: "Coming Q1 2026",
-    features: [
-      "Everything in Pro",
-      "AI-powered deck creation",
-      "Use prompts to generate cards",
-      "10,000 tokens per month",
-    ],
-    cta: "Coming Soon",
-    popular: false,
-    comingSoon: true,
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Pricing = () => {
+  const { t } = useLanguage();
+
+  const plans = [
+    {
+      nameKey: "pricing.free",
+      price: "€0",
+      periodKey: "pricing.forever",
+      descKey: "pricing.freeDesc",
+      features: [
+        "pricing.free.feature1",
+        "pricing.free.feature2",
+        "pricing.free.feature3",
+        "pricing.free.feature4",
+        "pricing.free.feature5",
+      ],
+      ctaKey: "pricing.startFree",
+      popular: false,
+    },
+    {
+      nameKey: "pricing.pro",
+      price: "€9.50",
+      periodKey: "pricing.oneTime",
+      descKey: "pricing.proDesc",
+      features: [
+        "pricing.pro.feature1",
+        "pricing.pro.feature2",
+        "pricing.pro.feature3",
+        "pricing.pro.feature4",
+        "pricing.pro.feature5",
+        "pricing.pro.feature6",
+        "pricing.pro.feature7",
+      ],
+      ctaKey: "pricing.goPro",
+      popular: true,
+    },
+    {
+      nameKey: "pricing.ai",
+      price: "€3",
+      periodKey: "pricing.month",
+      descKey: "pricing.aiDesc",
+      features: [
+        "pricing.ai.feature1",
+        "pricing.ai.feature2",
+        "pricing.ai.feature3",
+        "pricing.ai.feature4",
+      ],
+      ctaKey: "pricing.comingSoon",
+      popular: false,
+      comingSoon: true,
+    },
+  ];
+
   return (
     <section id="pricing" className="py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Simple, Transparent Pricing
+            {t("pricing.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Start free and upgrade when you're ready. One-time payment, no subscriptions.
+            {t("pricing.subtitle")}
           </p>
         </div>
         
@@ -87,26 +79,26 @@ const Pricing = () => {
             >
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-primary-foreground text-sm font-medium">
-                  Most Popular
+                  {t("pricing.mostPopular")}
                 </span>
               )}
               
               <div className="text-center mb-6">
                 <h3 className="text-xl font-semibold text-card-foreground mb-2">
-                  {plan.name}
+                  {t(plan.nameKey)}
                 </h3>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-4xl font-bold text-foreground">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.period}</span>
+                  <span className="text-muted-foreground">{t(plan.periodKey)}</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+                <p className="text-sm text-muted-foreground mt-2">{t(plan.descKey)}</p>
               </div>
               
               <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, featureIndex) => (
+                {plan.features.map((featureKey, featureIndex) => (
                   <li key={featureIndex} className="flex items-center gap-3">
                     <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-card-foreground">{feature}</span>
+                    <span className="text-card-foreground">{t(featureKey)}</span>
                   </li>
                 ))}
               </ul>
@@ -116,7 +108,7 @@ const Pricing = () => {
                 variant={plan.popular ? "default" : "outline"}
                 disabled={plan.comingSoon}
               >
-                {plan.cta}
+                {t(plan.ctaKey)}
               </Button>
             </div>
           ))}

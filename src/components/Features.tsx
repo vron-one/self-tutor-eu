@@ -1,40 +1,43 @@
 import { BookOpen, FileSpreadsheet, Brain, Languages, Trophy, Repeat } from "lucide-react";
 import featuresBg from "@/assets/features-bg.png";
-
-const features = [
-  {
-    icon: BookOpen,
-    title: "Flashcard Decks",
-    description: "Create unlimited decks organized by topic. Perfect for vocabulary, facts, or any subject you want to master.",
-  },
-  {
-    icon: FileSpreadsheet,
-    title: "Excel Import",
-    description: "Already have your content? Import directly from Excel spreadsheets and start learning in seconds.",
-  },
-  {
-    icon: Brain,
-    title: "Smart Quizzes",
-    description: "Test your knowledge with interactive quizzes. Track your progress and focus on what needs work.",
-  },
-  {
-    icon: Languages,
-    title: "Language Learning",
-    description: "Built-in reading mode for language practice. Perfect for learning vocabulary in any language.",
-  },
-  {
-    icon: Repeat,
-    title: "Spaced Repetition",
-    description: "Our algorithm shows cards at optimal intervals so you remember more with less effort.",
-  },
-  {
-    icon: Trophy,
-    title: "Progress Tracking",
-    description: "See your improvement over time with detailed statistics and achievement badges.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Features = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: BookOpen,
+      titleKey: "features.flashcardDecks",
+      descKey: "features.flashcardDecksDesc",
+    },
+    {
+      icon: FileSpreadsheet,
+      titleKey: "features.excelImport",
+      descKey: "features.excelImportDesc",
+    },
+    {
+      icon: Brain,
+      titleKey: "features.smartQuizzes",
+      descKey: "features.smartQuizzesDesc",
+    },
+    {
+      icon: Languages,
+      titleKey: "features.languageLearning",
+      descKey: "features.languageLearningDesc",
+    },
+    {
+      icon: Repeat,
+      titleKey: "features.spacedRepetition",
+      descKey: "features.spacedRepetitionDesc",
+    },
+    {
+      icon: Trophy,
+      titleKey: "features.progressTracking",
+      descKey: "features.progressTrackingDesc",
+    },
+  ];
+
   return (
     <section id="features" className="py-24 relative overflow-hidden">
       {/* Background image with overlay */}
@@ -46,10 +49,10 @@ const Features = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Everything You Need to Learn
+            {t("features.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Powerful tools designed to make learning efficient, enjoyable, and effective.
+            {t("features.subtitle")}
           </p>
         </div>
         
@@ -63,10 +66,10 @@ const Features = () => {
                 <feature.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-xl font-semibold text-card-foreground mb-2">
-                {feature.title}
+                {t(feature.titleKey)}
               </h3>
               <p className="text-muted-foreground">
-                {feature.description}
+                {t(feature.descKey)}
               </p>
             </div>
           ))}
