@@ -10,7 +10,8 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting. f4c6b643-061a-46b2-9b7c-e6df93049f74
+Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting. 
+Project id is -> f4c6b643-061a-46b2-9b7c-e6df93049f74
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -37,6 +38,10 @@ cp .env.example .env.local
 
 # Step 5: Start the development server with auto-reloading and an instant preview.
 npm run dev
+
+# Step 6: Build and preview the production bundle locally.
+npm run build
+npm run preview
 ```
 
 **Edit a file directly in GitHub**
