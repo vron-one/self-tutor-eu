@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting. f4c6b643-061a-46b2-9b7c-e6df93049f74
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -32,7 +32,10 @@ cd <YOUR_PROJECT_NAME>
 # Step 3: Install the necessary dependencies.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Copy example env and set values.
+cp .env.example .env.local
+
+# Step 5: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 

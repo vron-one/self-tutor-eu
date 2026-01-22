@@ -1,5 +1,4 @@
-import { useState, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -15,10 +14,8 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getAppConfig } from "@/lib/appConfig";
 import { MessageCircle, Zap, Globe, PiggyBank } from "lucide-react";
-
-const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
-const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL || "";
 
 const topicOptions = [
   { value: "choose", label: "Choose..." },
@@ -30,10 +27,58 @@ const topicOptions = [
   { value: "question_about_vron", label: "Question about vron" },
 ];
 
+const RECAPTCHA_ACTION = "help_center_submit";
+
+const loadRecaptchaScript = (siteKey: string) =>
+  new Promise<void>((resolve, reject) => {
+    if (window.grecaptcha?.ready) {
+      window.grecaptcha.ready(() => resolve());
+      return;
+    }
+
+    const existingScript = document.querySelector(
+      'script[src^="https://www.google.com/recaptcha/api.js"]'
+    );
+
+    if (existingScript) {
+      existingScript.addEventListener("load", () => resolve());
+      existingScript.addEventListener("error", () =>
+        reject(new Error("Failed to load reCAPTCHA"))
+      );
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("Failed to load reCAPTCHA"));
+    document.head.appendChild(script);
+  });
+
+const executeRecaptcha = async (siteKey: string) => {
+  await loadRecaptchaScript(siteKey);
+
+  return new Promise<string>((resolve, reject) => {
+    if (!window.grecaptcha?.execute) {
+      reject(new Error("reCAPTCHA not ready"));
+      return;
+    }
+
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute(siteKey, { action: RECAPTCHA_ACTION })
+        .then(resolve)
+        .catch(reject);
+    });
+  });
+};
+
 const HelpCenter = () => {
   const { t, language } = useLanguage();
   const { toast } = useToast();
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const { recaptchaSiteKey, n8nWebhookUrl } = getAppConfig();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -43,8 +88,33 @@ const HelpCenter = () => {
     topic: "choose",
     message: "",
   });
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRecaptchaReady, setIsRecaptchaReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!recaptchaSiteKey) {
+      setIsRecaptchaReady(false);
+      return;
+    }
+
+    loadRecaptchaScript(recaptchaSiteKey)
+      .then(() => {
+        if (!cancelled) {
+          setIsRecaptchaReady(true);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setIsRecaptchaReady(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [recaptchaSiteKey]);
 
   const isFormValid =
     formData.firstName.trim() !== "" &&
@@ -53,8 +123,7 @@ const HelpCenter = () => {
     formData.confirmEmail.trim() !== "" &&
     formData.email === formData.confirmEmail &&
     formData.topic !== "choose" &&
-    formData.message.trim() !== "" &&
-    captchaToken !== null;
+    formData.message.trim() !== "";
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -67,18 +136,26 @@ const HelpCenter = () => {
     setFormData((prev) => ({ ...prev, topic: value }));
   };
 
-  const handleCaptchaChange = (token: string | null) => {
-    setCaptchaToken(token);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!isFormValid) return;
+    if (!recaptchaSiteKey) {
+      toast({
+        title: language === "de" ? "Fehler" : "Error",
+        description:
+          language === "de"
+            ? "reCAPTCHA ist nicht konfiguriert."
+            : "reCAPTCHA is not configured.",
+        variant: "destructive",
+      });
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
+      const captchaToken = await executeRecaptcha(recaptchaSiteKey);
       const payload = {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -90,7 +167,7 @@ const HelpCenter = () => {
         language,
       };
 
-      const response = await fetch(N8N_WEBHOOK_URL, {
+      const response = await fetch(n8nWebhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -119,8 +196,6 @@ const HelpCenter = () => {
         topic: "choose",
         message: "",
       });
-      setCaptchaToken(null);
-      recaptchaRef.current?.reset();
     } catch (error) {
       toast({
         title: language === "de" ? "Fehler" : "Error",
@@ -317,20 +392,10 @@ const HelpCenter = () => {
                 />
               </div>
 
-              {RECAPTCHA_SITE_KEY && (
-                <div className="flex justify-center">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={RECAPTCHA_SITE_KEY}
-                    onChange={handleCaptchaChange}
-                  />
-                </div>
-              )}
-
               <Button
                 type="submit"
                 className="w-full"
-                disabled={!isFormValid || isSubmitting}
+                disabled={!isFormValid || isSubmitting || !isRecaptchaReady}
               >
                 {isSubmitting
                   ? language === "de"

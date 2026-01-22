@@ -35,6 +35,8 @@ jobs:
         env:
           # Set base path for GitHub Pages (replace 'your-repo-name' with actual repo name)
           VITE_BASE_URL: /${{ github.event.repository.name }}/
+          APP_RECAPTCHA_SITE_KEY: ${{ secrets.APP_RECAPTCHA_SITE_KEY }}
+          APP_N8N_WEBHOOK_URL: ${{ secrets.APP_N8N_WEBHOOK_URL }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

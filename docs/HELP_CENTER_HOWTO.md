@@ -7,27 +7,40 @@ The Help Center page (`/help`) provides a contact form that sends submissions to
 - Form validation (all fields required)
 - Email confirmation matching
 - Topic selection dropdown
-- Google reCAPTCHA v2 protection
+- Google reCAPTCHA v3 protection
 - JSON POST request to n8n
 
 ## Environment Variables
 
-Add these environment variables to your `.env` file or Lovable secrets:
+Copy `.env.example` to `.env` or `.env.local` for local development, then set
+these values. Use the same values as GitHub Actions secrets for CI/CD builds:
 
 ```env
-VITE_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
-VITE_N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/your-webhook-id
+APP_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+APP_N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/your-webhook-id
 ```
 
-## Setting Up Google reCAPTCHA
+The build generates `public/config.js` from these values via
+`scripts/generate-config.mjs`. The frontend reads them at runtime from
+`window.__APP_CONFIG__`.
+
+## CI/CD (GitHub Pages)
+
+Create the following GitHub Actions secrets and they will be injected at build
+time:
+
+- `APP_RECAPTCHA_SITE_KEY`
+- `APP_N8N_WEBHOOK_URL`
+
+## Setting Up Google reCAPTCHA (v3)
 
 1. Go to [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin)
 2. Click the **+** button to create a new site
-3. Choose **reCAPTCHA v2** → **"I'm not a robot" Checkbox**
+3. Choose **reCAPTCHA v3**
 4. Add your domains:
    - `localhost` (for development)
    - Your production domain (e.g., `selftutor.eu`)
-5. Copy the **Site Key** and add it as `VITE_RECAPTCHA_SITE_KEY`
+5. Copy the **Site Key** and add it as `APP_RECAPTCHA_SITE_KEY`
 6. Copy the **Secret Key** and add it to your n8n workflow for server-side verification
 
 ## Setting Up n8n Webhook
@@ -80,6 +93,12 @@ Add nodes to:
 [Webhook] → [reCAPTCHA Verify] → [IF Success] → [Send Email] → [Respond to Webhook]
 ```
 
+When using reCAPTCHA v3, also validate:
+
+- `success` is true
+- `action` matches `help_center_submit`
+- `score` meets your threshold (for example `>= 0.5`)
+
 ## Testing Locally
 
 ### 1. Set up environment variables
@@ -87,8 +106,8 @@ Add nodes to:
 Create a `.env.local` file:
 
 ```env
-VITE_RECAPTCHA_SITE_KEY=your_site_key
-VITE_N8N_WEBHOOK_URL=your_n8n_test_webhook_url
+APP_RECAPTCHA_SITE_KEY=your_site_key
+APP_N8N_WEBHOOK_URL=your_n8n_test_webhook_url
 ```
 
 ### 2. Test the form
@@ -101,8 +120,7 @@ VITE_N8N_WEBHOOK_URL=your_n8n_test_webhook_url
    - Confirm Email (must match)
    - Topic (select any except "Choose...")
    - Message
-3. Complete the reCAPTCHA challenge
-4. Click "Send"
+3. Click "Send" (reCAPTCHA v3 runs in the background)
 
 ### 3. Verify in n8n
 
@@ -120,7 +138,7 @@ The "Send" button is **disabled** when:
 - ❌ Confirm Email is empty or doesn't match Email
 - ❌ Topic is "Choose..."
 - ❌ Message is empty
-- ❌ reCAPTCHA is not completed
+- ❌ reCAPTCHA token could not be generated
 
 ## Topic Values
 
@@ -136,13 +154,13 @@ The "Send" button is **disabled** when:
 
 ## Troubleshooting
 
-### reCAPTCHA not showing
-- Check that `VITE_RECAPTCHA_SITE_KEY` is set correctly
+### reCAPTCHA not working
+- Check that `APP_RECAPTCHA_SITE_KEY` is set correctly
 - Verify the domain is registered in Google reCAPTCHA admin
 
 ### Form submission fails
 - Check browser console for errors
-- Verify `VITE_N8N_WEBHOOK_URL` is correct
+- Verify `APP_N8N_WEBHOOK_URL` is correct
 - Ensure n8n webhook is active and listening
 
 ### CORS errors
@@ -153,5 +171,6 @@ The "Send" button is **disabled** when:
 
 - Never expose the reCAPTCHA **Secret Key** in frontend code
 - Always verify reCAPTCHA tokens server-side (in n8n)
+- For v3, validate the `action` and `score` in n8n
 - Consider rate limiting in n8n to prevent abuse
 - Sanitize and validate all input data in n8n before processing
