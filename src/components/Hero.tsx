@@ -34,13 +34,17 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="gap-2">
-                {t("hero.cta")}
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button size="lg" variant="outline">
-                {t("hero.secondary")}
-              </Button>
+              <a href="#pricing">
+                <Button size="lg" className="gap-2">
+                  {t("hero.cta")}
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </a>
+              <a href="#how-it-works">
+                <Button size="lg" variant="outline">
+                  {t("hero.secondary")}
+                </Button>
+              </a>
             </div>
             
             <div className="mt-8 flex items-center gap-6 justify-center lg:justify-start text-sm text-muted-foreground">

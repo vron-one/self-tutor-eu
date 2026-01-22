@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Download } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Popover,
   PopoverContent,
@@ -75,7 +76,9 @@ const Navbar = () => {
               </PopoverContent>
             </Popover>
             <LanguagePicker />
-            <Button variant="default">{t("nav.getStarted")}</Button>
+            <Link to="/download">
+              <Button variant="default">{t("nav.getStarted")}</Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -110,7 +113,9 @@ const Navbar = () => {
               </p>
               <DownloadButtons />
             </div>
-            <Button variant="default" className="w-full">{t("nav.getStarted")}</Button>
+            <Link to="/download" className="w-full">
+              <Button variant="default" className="w-full">{t("nav.getStarted")}</Button>
+            </Link>
           </div>
         )}
       </div>
