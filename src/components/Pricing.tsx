@@ -1,7 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
-const plans = [
+interface Plan {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  cta: string;
+  popular: boolean;
+  comingSoon?: boolean;
+}
+
+const plans: Plan[] = [
   {
     name: "Free",
     price: "€0",
@@ -35,20 +46,19 @@ const plans = [
     popular: true,
   },
   {
-    name: "Team",
-    price: "€9.99",
+    name: "AI Subscription",
+    price: "€3",
     period: "/month",
-    description: "For study groups",
+    description: "Coming Q1 2026",
     features: [
       "Everything in Pro",
-      "Up to 5 team members",
-      "Shared deck library",
-      "Group progress tracking",
-      "Admin dashboard",
-      "API access",
+      "AI-powered deck creation",
+      "Use prompts to generate cards",
+      "10,000 tokens per month",
     ],
-    cta: "Contact Us",
+    cta: "Coming Soon",
     popular: false,
+    comingSoon: true,
   },
 ];
 
@@ -104,6 +114,7 @@ const Pricing = () => {
               <Button
                 className="w-full"
                 variant={plan.popular ? "default" : "outline"}
+                disabled={plan.comingSoon}
               >
                 {plan.cta}
               </Button>
