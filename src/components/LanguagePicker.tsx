@@ -1,4 +1,5 @@
 import { Globe } from "lucide-react";
+import { useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -10,9 +11,15 @@ const languages: Language[] = ["en", "de", "it", "pt", "gr", "sp"];
 
 const LanguagePicker = () => {
   const { language, setLanguage } = useLanguage();
+  const [open, setOpen] = useState(false);
+
+  const handleSelect = (lang: Language) => {
+    setLanguage(lang);
+    setOpen(false);
+  };
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <button className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors">
           <Globe className="w-4 h-4" />
@@ -24,7 +31,7 @@ const LanguagePicker = () => {
           {languages.map((lang) => (
             <button
               key={lang}
-              onClick={() => setLanguage(lang)}
+              onClick={() => handleSelect(lang)}
               className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors ${
                 language === lang
                   ? "bg-primary/10 text-primary"

@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroPhone from "@/assets/hero-phone.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen pt-24 pb-16 overflow-hidden">
       {/* Background gradient */}
@@ -18,41 +21,40 @@ const Hero = () => {
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
               <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-medium">Learn smarter, not harder</span>
+              <span className="text-sm font-medium">{t("hero.badge")}</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
-              Master Anything with{" "}
-              <span className="text-primary">Smart Flashcards</span>
+              {t("hero.title")}{" "}
+              <span className="text-primary">{t("hero.titleHighlight")}</span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0">
-              Create personalized flashcard decks, take quizzes, and learn new languages. 
-              Import from Excel or build from scratch. Start free today.
+              {t("hero.description")}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button size="lg" className="gap-2">
-                Start Learning Free
+                {t("hero.cta")}
                 <ArrowRight className="w-4 h-4" />
               </Button>
               <Button size="lg" variant="outline">
-                See How It Works
+                {t("hero.secondary")}
               </Button>
             </div>
             
             <div className="mt-8 flex items-center gap-6 justify-center lg:justify-start text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full" />
-                2 Free Decks
+                {t("hero.freeDecks")}
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full" />
-                50 Cards Each
+                {t("hero.cardsEach")}
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full" />
-                No Credit Card
+                {t("hero.noCard")}
               </div>
             </div>
           </div>
