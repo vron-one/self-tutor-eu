@@ -15,6 +15,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getAppConfig } from "@/lib/appConfig";
+import { trackEvent } from "@/hooks/usePageTracking";
 import { MessageCircle, Zap, Globe, PiggyBank } from "lucide-react";
 
 type GrecaptchaWindow = Window & {
@@ -189,6 +190,11 @@ const HelpCenter = () => {
       if (!response.ok) {
         throw new Error("Failed to submit form");
       }
+
+      trackEvent("help_request_submit", {
+        topic: formData.topic,
+        language,
+      });
 
       toast({
         title: language === "de" ? "Erfolgreich gesendet!" : "Successfully sent!",

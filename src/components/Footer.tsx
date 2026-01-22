@@ -1,4 +1,9 @@
+import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-12 bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4">
@@ -12,37 +17,78 @@ const Footer = () => {
               <span className="text-xl font-bold">SelfTutor</span>
             </div>
             <p className="text-secondary-foreground/80">
-              Master anything with smart flashcards. Learn smarter, not harder.
+              {t("footer.tagline")}
             </p>
           </div>
           
           {/* Product */}
           <div>
-            <h4 className="font-semibold mb-4">Product</h4>
+            <h4 className="font-semibold mb-4">{t("footer.product")}</h4>
             <ul className="space-y-2 text-secondary-foreground/80">
-              <li><a href="#features" className="hover:text-secondary-foreground transition-colors">Features</a></li>
-              <li><a href="#pricing" className="hover:text-secondary-foreground transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-secondary-foreground transition-colors">Download App</a></li>
+              <li>
+                <Link to="/#features" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.features")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/#pricing" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.pricing")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/#examples" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.examples")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/download" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.downloadApp")}
+                </Link>
+              </li>
             </ul>
           </div>
           
           {/* Support */}
           <div>
-            <h4 className="font-semibold mb-4">Support</h4>
+            <h4 className="font-semibold mb-4">{t("footer.support")}</h4>
             <ul className="space-y-2 text-secondary-foreground/80">
-              <li><a href="/help" className="hover:text-secondary-foreground transition-colors">Help Center</a></li>
-              <li><a href="/help" className="hover:text-secondary-foreground transition-colors">Contact Us</a></li>
-              <li><a href="/faq" className="hover:text-secondary-foreground transition-colors">FAQ</a></li>
+              <li>
+                <Link to="/help" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.helpCenter")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/help" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.contact")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.faq")}
+                </Link>
+              </li>
             </ul>
           </div>
           
           {/* Legal */}
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
+            <h4 className="font-semibold mb-4">{t("footer.legal")}</h4>
             <ul className="space-y-2 text-secondary-foreground/80">
-              <li><a href="/privacy" className="hover:text-secondary-foreground transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms" className="hover:text-secondary-foreground transition-colors">Terms of Service</a></li>
-              <li><a href="/imprint" className="hover:text-secondary-foreground transition-colors">Imprint</a></li>
+              <li>
+                <Link to="/privacy" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.privacy")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.terms")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/imprint" className="hover:text-secondary-foreground transition-colors">
+                  {t("footer.imprint")}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

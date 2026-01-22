@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Cookie, X } from "lucide-react";
+import { loadGtm } from "@/lib/gtm";
 
 const COOKIE_CONSENT_KEY = "selftutor_cookie_consent";
 
@@ -29,11 +30,24 @@ const CookieBanner = () => {
       const timer = setTimeout(() => setIsVisible(true), 500);
       return () => clearTimeout(timer);
     }
+
+    try {
+      const parsed = JSON.parse(consent) as CookieConsent;
+      if (parsed.analytics) {
+        loadGtm();
+      }
+    } catch {
+      // Ignore malformed consent values
+    }
   }, []);
 
   const saveConsent = (consent: CookieConsent) => {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
     setIsVisible(false);
+
+    if (consent.analytics) {
+      loadGtm();
+    }
     
     // Dispatch custom event for tracking scripts to listen to
     window.dispatchEvent(new CustomEvent("cookieConsentUpdated", { detail: consent }));

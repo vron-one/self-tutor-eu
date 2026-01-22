@@ -58,6 +58,15 @@ export const usePageTracking = () => {
         page_title: document.title,
       });
     }
+
+    // If GTM is loaded, push a page_view event
+    if (typeof window !== "undefined" && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        event: "page_view",
+        page_path: location.pathname,
+        page_title: document.title,
+      });
+    }
   }, [location.pathname]);
 };
 
@@ -91,5 +100,15 @@ export const trackEvent = (eventName: string, eventData?: Record<string, any>) =
   // Google Analytics
   if (typeof window !== "undefined" && (window as any).gtag) {
     (window as any).gtag("event", eventName, eventData);
+  }
+
+  // Google Tag Manager custom event
+  if (typeof window !== "undefined" && (window as any).dataLayer) {
+    (window as any).dataLayer.push({
+      event: eventName,
+      ...eventData,
+      page_path: window.location.pathname,
+      timestamp: new Date().toISOString(),
+    });
   }
 };

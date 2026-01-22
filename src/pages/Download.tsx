@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Smartphone, CheckCircle, Download as DownloadIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackEvent } from "@/hooks/usePageTracking";
 
 const Download = () => {
   const { language } = useLanguage();
@@ -95,6 +96,7 @@ const Download = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="block transition-transform hover:scale-105"
+                onClick={() => trackEvent("download_click", { platform: "ios", source: "download_page" })}
               >
                 <img 
                   src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
@@ -128,6 +130,7 @@ const Download = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="block transition-transform hover:scale-105"
+                onClick={() => trackEvent("download_click", { platform: "android", source: "download_page" })}
               >
                 <img 
                   src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
