@@ -1,7 +1,9 @@
 ## GitHub Pages Deployment (Actions)
 
 This project deploys to GitHub Pages using the **GitHub Actions** build and
-deployment flow (not the "Deploy from a branch" option).
+deployment flow (not the "Deploy from a branch" option). The build tool is
+**Vite** (see `vite.config.ts`), even if you don't use any Vite-specific
+features directly.
 
 ### 1) Repository Settings
 
@@ -27,6 +29,15 @@ Add these GitHub Actions secrets:
 - `APP_N8N_WEBHOOK_URL`
 
 These are used at build time to generate `public/config.js`.
+
+### 3) Base URL for GitHub Pages
+
+GitHub Pages serves your site under `/<repo-name>/`, so the build must use
+the correct base path. The workflow sets:
+
+- `VITE_BASE_URL=/${{ github.event.repository.name }}/`
+
+This is read by `vite.config.ts` and ensures asset URLs resolve correctly.
 
 ### 4) Trigger a Deployment
 
