@@ -14,6 +14,7 @@ import TermsOfService from "./pages/TermsOfService";
 import Download from "./pages/Download";
 import HelpCenter from "./pages/HelpCenter";
 import FAQ from "./pages/FAQ";
+import ExamplesPage from "./pages/Examples";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/download" element={<Download />} />
             <Route path="/help" element={<HelpCenter />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/examples" element={<ExamplesPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

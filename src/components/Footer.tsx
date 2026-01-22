@@ -36,7 +36,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/#examples" className="hover:text-secondary-foreground transition-colors">
+                <Link to="/examples" className="hover:text-secondary-foreground transition-colors">
                   {t("footer.examples")}
                 </Link>
               </li>

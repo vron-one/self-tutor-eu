@@ -9,14 +9,26 @@ const Examples = () => {
     {
       titleKey: "examples.item1.title",
       descKey: "examples.item1.desc",
+      downloadKey: "examples.item1.download",
+      file: "/examples/flashcards_daily_verbs_portugese.xlsx",
     },
     {
       titleKey: "examples.item2.title",
       descKey: "examples.item2.desc",
+      downloadKey: "examples.item2.download",
+      file: "/examples/flashcards_daily_verbs_italian.xlsx",
     },
     {
       titleKey: "examples.item3.title",
       descKey: "examples.item3.desc",
+      downloadKey: "examples.item3.download",
+      file: "/examples/flashcards_daily_verbs_greek.xlsx",
+    },
+    {
+      titleKey: "examples.item4.title",
+      descKey: "examples.item4.desc",
+      downloadKey: "examples.item4.download",
+      file: "/examples/flashcards_daily_verbs_deutsch.xlsx",
     },
   ];
 
@@ -32,7 +44,7 @@ const Examples = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {examples.map((example) => (
             <div
               key={example.titleKey}
@@ -42,17 +54,16 @@ const Examples = () => {
                 {t(example.titleKey)}
               </h3>
               <p className="text-muted-foreground">{t(example.descKey)}</p>
+              <div className="mt-4">
+                <a href={example.file} download>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Download className="w-4 h-4" />
+                    {t(example.downloadKey)}
+                  </Button>
+                </a>
+              </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-10 flex justify-center">
-          <a href="/examples/selftutor-examples.xls" download>
-            <Button variant="outline" className="gap-2">
-              <Download className="w-4 h-4" />
-              {t("examples.download")}
-            </Button>
-          </a>
         </div>
       </div>
     </section>

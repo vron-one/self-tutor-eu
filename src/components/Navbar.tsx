@@ -50,7 +50,6 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center gap-2">
             <img src={logo} alt="SelfTutor" className="w-10 h-10 rounded-lg object-cover" />
-            <span className="text-xl font-bold text-foreground">SelfTutor</span>
           </a>
 
           {/* Desktop Navigation */}
