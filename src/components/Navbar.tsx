@@ -7,9 +7,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import logo from "@/assets/logo.png";
+import LanguagePicker from "@/components/LanguagePicker";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
 
   const DownloadButtons = () => (
     <div className="flex flex-col gap-3 p-2">
@@ -52,58 +55,62 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
-              Features
+              {t("nav.features")}
             </a>
             <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">
-              How It Works
+              {t("nav.howItWorks")}
             </a>
             <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
-              Pricing
+              {t("nav.pricing")}
             </a>
             <Popover>
               <PopoverTrigger asChild>
                 <button className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors">
                   <Download className="w-4 h-4" />
-                  Download App
+                  {t("nav.downloadApp")}
                 </button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto">
+              <PopoverContent className="w-auto bg-popover border border-border shadow-lg z-50">
                 <DownloadButtons />
               </PopoverContent>
             </Popover>
-            <Button variant="default">Get Started Free</Button>
+            <LanguagePicker />
+            <Button variant="default">{t("nav.getStarted")}</Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            <LanguagePicker />
+            <button
+              className="text-foreground"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden pt-4 pb-2 flex flex-col gap-4">
             <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors py-2">
-              Features
+              {t("nav.features")}
             </a>
             <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors py-2">
-              How It Works
+              {t("nav.howItWorks")}
             </a>
             <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors py-2">
-              Pricing
+              {t("nav.pricing")}
             </a>
             <div className="py-2">
               <p className="text-sm font-medium text-foreground mb-3 flex items-center gap-1">
                 <Download className="w-4 h-4" />
-                Download App
+                {t("nav.downloadApp")}
               </p>
               <DownloadButtons />
             </div>
-            <Button variant="default" className="w-full">Get Started Free</Button>
+            <Button variant="default" className="w-full">{t("nav.getStarted")}</Button>
           </div>
         )}
       </div>
