@@ -19,17 +19,17 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "€4.99",
-    period: "/month",
-    description: "For serious learners",
+    price: "€9.50",
+    period: "one-time",
+    description: "Pay once, learn forever",
     features: [
-      "Unlimited decks",
-      "Unlimited cards",
+      "Unlimited decks & cards",
+      "Excel import & export",
       "Advanced quizzes",
       "Spaced repetition",
       "Language reading mode",
-      "Priority support",
       "Offline access",
+      "No limits except your phone storage",
     ],
     cta: "Go Pro",
     popular: true,
@@ -61,7 +61,7 @@ const Pricing = () => {
             Simple, Transparent Pricing
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Start free and upgrade when you're ready. No hidden fees.
+            Start free and upgrade when you're ready. One-time payment, no subscriptions.
           </p>
         </div>
         
