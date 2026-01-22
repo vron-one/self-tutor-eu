@@ -3,6 +3,13 @@ export type AppConfig = {
   n8nWebhookUrl: string;
 };
 
+type WindowWithConfig = Window & {
+  __APP_CONFIG__?: {
+    recaptchaSiteKey?: string;
+    n8nWebhookUrl?: string;
+  };
+};
+
 const fallbackConfig: AppConfig = {
   recaptchaSiteKey: "",
   n8nWebhookUrl: "",
@@ -13,8 +20,9 @@ export const getAppConfig = (): AppConfig => {
     return fallbackConfig;
   }
 
+  const win = window as WindowWithConfig;
   return {
-    recaptchaSiteKey: window.__APP_CONFIG__?.recaptchaSiteKey ?? "",
-    n8nWebhookUrl: window.__APP_CONFIG__?.n8nWebhookUrl ?? "",
+    recaptchaSiteKey: win.__APP_CONFIG__?.recaptchaSiteKey ?? "",
+    n8nWebhookUrl: win.__APP_CONFIG__?.n8nWebhookUrl ?? "",
   };
 };

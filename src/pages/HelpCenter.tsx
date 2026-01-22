@@ -17,6 +17,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { getAppConfig } from "@/lib/appConfig";
 import { MessageCircle, Zap, Globe, PiggyBank } from "lucide-react";
 
+type GrecaptchaWindow = Window & {
+  grecaptcha?: {
+    ready: (callback: () => void) => void;
+    execute: (siteKey: string, options: { action: string }) => Promise<string>;
+  };
+};
+
 const topicOptions = [
   { value: "choose", label: "Choose..." },
   { value: "feedback", label: "Feedback" },
@@ -29,10 +36,13 @@ const topicOptions = [
 
 const RECAPTCHA_ACTION = "help_center_submit";
 
+const getGrecaptcha = () => (window as GrecaptchaWindow).grecaptcha;
+
 const loadRecaptchaScript = (siteKey: string) =>
   new Promise<void>((resolve, reject) => {
-    if (window.grecaptcha?.ready) {
-      window.grecaptcha.ready(() => resolve());
+    const grecaptcha = getGrecaptcha();
+    if (grecaptcha?.ready) {
+      grecaptcha.ready(() => resolve());
       return;
     }
 
@@ -61,13 +71,14 @@ const executeRecaptcha = async (siteKey: string) => {
   await loadRecaptchaScript(siteKey);
 
   return new Promise<string>((resolve, reject) => {
-    if (!window.grecaptcha?.execute) {
+    const grecaptcha = getGrecaptcha();
+    if (!grecaptcha?.execute) {
       reject(new Error("reCAPTCHA not ready"));
       return;
     }
 
-    window.grecaptcha.ready(() => {
-      window.grecaptcha
+    grecaptcha.ready(() => {
+      grecaptcha
         .execute(siteKey, { action: RECAPTCHA_ACTION })
         .then(resolve)
         .catch(reject);
