@@ -33,8 +33,8 @@ jobs:
       - name: Build
         run: bun run build
         env:
-          # Set base path for GitHub Pages (replace 'your-repo-name' with actual repo name)
-          VITE_BASE_URL: /${{ github.event.repository.name }}/
+          # Use VITE_BASE_URL repo variable when a custom domain is used ("/" for root).
+          VITE_BASE_URL: ${{ vars.VITE_BASE_URL || format('/{0}/', github.event.repository.name) }}
           APP_RECAPTCHA_SITE_KEY: ${{ secrets.APP_RECAPTCHA_SITE_KEY }}
           APP_N8N_WEBHOOK_URL: ${{ secrets.APP_N8N_WEBHOOK_URL }}
 
