@@ -33,12 +33,12 @@ const Imprint = () => {
                 {language === "de" ? "Dienstanbieter" : "Service Provider"}
               </h2>
               <div className="text-muted-foreground space-y-2">
-                <p className="font-semibold text-foreground">Franziska Neusser</p>
+                <p className="font-semibold text-foreground">Thomas Neusser</p>
                 <p>vron.one</p>
                 <p>
                   <span className="font-medium">{language === "de" ? "E-Mail" : "Email"}:</span>{" "}
-                  <a href="mailto:support@vron.one" className="text-primary hover:underline">
-                    support@vron.one
+                  <a href="mailto:selftutor@vron.one" className="text-primary hover:underline">
+                    selftutor@vron.one
                   </a>
                 </p>
                 <p>
@@ -104,8 +104,8 @@ const Imprint = () => {
                   : "For questions or concerns, you can reach us at the following email address:"}
               </p>
               <p className="mt-2">
-                <a href="mailto:support@vron.one" className="text-primary hover:underline font-medium">
-                  support@vron.one
+                <a href="mailto:selftutor@vron.one" className="text-primary hover:underline font-medium">
+                  selftutor@vron.one
                 </a>
               </p>
             </section>
