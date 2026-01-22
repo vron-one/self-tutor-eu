@@ -10,38 +10,38 @@ import logo from "@/assets/logo.png";
 import LanguagePicker from "@/components/LanguagePicker";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const DownloadButtons = () => (
+  <div className="flex flex-col gap-3 p-2">
+    <a 
+      href="https://apps.apple.com" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="transition-transform hover:scale-105"
+    >
+      <img 
+        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+        alt="Download on the App Store" 
+        className="h-10"
+      />
+    </a>
+    <a 
+      href="https://play.google.com" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="transition-transform hover:scale-105"
+    >
+      <img 
+        src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+        alt="Get it on Google Play" 
+        className="h-10"
+      />
+    </a>
+  </div>
+);
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
-
-  const DownloadButtons = () => (
-    <div className="flex flex-col gap-3 p-2">
-      <a 
-        href="https://apps.apple.com" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="transition-transform hover:scale-105"
-      >
-        <img 
-          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-          alt="Download on the App Store" 
-          className="h-10"
-        />
-      </a>
-      <a 
-        href="https://play.google.com" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="transition-transform hover:scale-105"
-      >
-        <img 
-          src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-          alt="Get it on Google Play" 
-          className="h-10"
-        />
-      </a>
-    </div>
-  );
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
