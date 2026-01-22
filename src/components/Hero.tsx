@@ -16,6 +16,9 @@ const Hero = () => {
       <div className="absolute bottom-1/4 right-10 w-32 h-32 bg-chart-1/20 rounded-full blur-3xl animate-pulse delay-1000" />
       
       <div className="container mx-auto px-4 relative z-10">
+        <div className="mb-6 rounded-lg border border-red-500/60 bg-red-500/10 px-4 py-3 text-center text-sm font-semibold text-red-600">
+          Work in progress — not live yet.
+        </div>
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left">
