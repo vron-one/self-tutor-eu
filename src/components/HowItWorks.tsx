@@ -2,44 +2,47 @@ import appHome from "@/assets/app-home.png";
 import appDecks from "@/assets/app-decks.png";
 import appCards from "@/assets/app-cards.png";
 import appSettings from "@/assets/app-settings.png";
-
-const steps = [
-  {
-    image: appHome,
-    step: "01",
-    title: "Quick Test or My Decks",
-    description: "Start immediately with a quick test or browse your personal deck library.",
-  },
-  {
-    image: appDecks,
-    step: "02",
-    title: "Organize Your Decks",
-    description: "Create decks by topic with tags. Keep active decks separate from archived ones.",
-  },
-  {
-    image: appCards,
-    step: "03",
-    title: "Study or Quiz",
-    description: "Flip through cards in Study mode or test yourself with Quiz. Track new vs learned cards.",
-  },
-  {
-    image: appSettings,
-    step: "04",
-    title: "Customize Your Experience",
-    description: "Set your language, daily session size, and learning preferences to match your goals.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HowItWorks = () => {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      image: appHome,
+      step: "01",
+      titleKey: "howItWorks.step1Title",
+      descKey: "howItWorks.step1Desc",
+    },
+    {
+      image: appDecks,
+      step: "02",
+      titleKey: "howItWorks.step2Title",
+      descKey: "howItWorks.step2Desc",
+    },
+    {
+      image: appCards,
+      step: "03",
+      titleKey: "howItWorks.step3Title",
+      descKey: "howItWorks.step3Desc",
+    },
+    {
+      image: appSettings,
+      step: "04",
+      titleKey: "howItWorks.step4Title",
+      descKey: "howItWorks.step4Desc",
+    },
+  ];
+
   return (
     <section id="how-it-works" className="py-24 bg-card">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-card-foreground mb-4">
-            How It Works
+            {t("howItWorks.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get started in minutes and begin your learning journey today.
+            {t("howItWorks.subtitle")}
           </p>
         </div>
         
@@ -56,7 +59,7 @@ const HowItWorks = () => {
                   <div className="w-48 h-auto rounded-2xl overflow-hidden shadow-lg border border-border bg-background">
                     <img 
                       src={step.image} 
-                      alt={step.title} 
+                      alt={t(step.titleKey)} 
                       className="w-full h-auto object-cover"
                     />
                   </div>
@@ -66,10 +69,10 @@ const HowItWorks = () => {
                 </div>
                 
                 <h3 className="text-xl font-semibold text-card-foreground mb-2">
-                  {step.title}
+                  {t(step.titleKey)}
                 </h3>
                 <p className="text-muted-foreground">
-                  {step.description}
+                  {t(step.descKey)}
                 </p>
               </div>
             </div>
