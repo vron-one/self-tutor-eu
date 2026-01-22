@@ -30,9 +30,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-secondary-foreground/80">
-              <li><a href="#" className="hover:text-secondary-foreground transition-colors">Help Center</a></li>
-              <li><a href="#" className="hover:text-secondary-foreground transition-colors">Contact Us</a></li>
-              <li><a href="#" className="hover:text-secondary-foreground transition-colors">FAQ</a></li>
+              <li><a href="/help" className="hover:text-secondary-foreground transition-colors">Help Center</a></li>
+              <li><a href="/help" className="hover:text-secondary-foreground transition-colors">Contact Us</a></li>
+              <li><a href="/help" className="hover:text-secondary-foreground transition-colors">FAQ</a></li>
             </ul>
           </div>
           
