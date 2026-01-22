@@ -1,29 +1,32 @@
-import { Upload, Layers, Play, TrendingUp } from "lucide-react";
+import appHome from "@/assets/app-home.png";
+import appDecks from "@/assets/app-decks.png";
+import appCards from "@/assets/app-cards.png";
+import appSettings from "@/assets/app-settings.png";
 
 const steps = [
   {
-    icon: Upload,
+    image: appHome,
     step: "01",
-    title: "Import or Create",
-    description: "Upload your Excel file or create cards manually. It takes just seconds to get started.",
+    title: "Quick Test or My Decks",
+    description: "Start immediately with a quick test or browse your personal deck library.",
   },
   {
-    icon: Layers,
+    image: appDecks,
     step: "02",
-    title: "Organize Decks",
-    description: "Group your cards into decks by topic, subject, or language for easy navigation.",
+    title: "Organize Your Decks",
+    description: "Create decks by topic with tags. Keep active decks separate from archived ones.",
   },
   {
-    icon: Play,
+    image: appCards,
     step: "03",
-    title: "Start Learning",
-    description: "Flip through flashcards or take quizzes. Our spaced repetition helps you remember.",
+    title: "Study or Quiz",
+    description: "Flip through cards in Study mode or test yourself with Quiz. Track new vs learned cards.",
   },
   {
-    icon: TrendingUp,
+    image: appSettings,
     step: "04",
-    title: "Track Progress",
-    description: "Watch your knowledge grow with detailed stats and achievement milestones.",
+    title: "Customize Your Experience",
+    description: "Set your language, daily session size, and learning preferences to match your goals.",
   },
 ];
 
@@ -45,13 +48,17 @@ const HowItWorks = () => {
             <div key={index} className="relative">
               {/* Connector line */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-border -translate-x-1/2" />
+                <div className="hidden lg:block absolute top-32 left-full w-full h-0.5 bg-border -translate-x-1/2" />
               )}
               
               <div className="text-center">
                 <div className="relative inline-block mb-6">
-                  <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
-                    <step.icon className="w-10 h-10 text-primary" />
+                  <div className="w-48 h-auto rounded-2xl overflow-hidden shadow-lg border border-border bg-background">
+                    <img 
+                      src={step.image} 
+                      alt={step.title} 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
                   <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center">
                     {step.step}
