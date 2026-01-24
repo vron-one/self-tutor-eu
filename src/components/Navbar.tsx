@@ -82,7 +82,6 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
-            <LanguagePicker />
             <button
               className="text-foreground"
               onClick={() => setIsOpen(!isOpen)}
@@ -111,6 +110,9 @@ const Navbar = () => {
                 {t("nav.downloadApp")}
               </p>
               <DownloadButtons />
+            </div>
+            <div className="py-2">
+              <LanguagePicker />
             </div>
             <Link to="/download" className="w-full">
               <Button variant="default" className="w-full">{t("nav.getStarted")}</Button>
