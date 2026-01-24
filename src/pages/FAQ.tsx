@@ -30,10 +30,6 @@ const faqContent = {
       answer: "Yes! You can create unlimited custom decks with your own content. Add text, images, and even audio to make your flashcards more engaging and effective."
     },
     {
-      question: "Is my progress synced across devices?",
-      answer: "Absolutely. Your learning progress is automatically synced across all your devices. Start learning on your phone and continue on your tablet or computer seamlessly."
-    },
-    {
       question: "What's included in the free plan?",
       answer: "The free plan includes access to basic flashcard features, limited deck creation, and community decks. Upgrade to Premium for unlimited decks, AI assistance, and advanced analytics."
     }
@@ -58,10 +54,6 @@ const faqContent = {
     {
       question: "Kann ich eigene Lernkarten-Decks erstellen?",
       answer: "Ja! Sie können unbegrenzt eigene Decks mit Ihren Inhalten erstellen. Fügen Sie Text, Bilder und sogar Audio hinzu, um Ihre Lernkarten ansprechender und effektiver zu gestalten."
-    },
-    {
-      question: "Wird mein Fortschritt geräteübergreifend synchronisiert?",
-      answer: "Absolut. Ihr Lernfortschritt wird automatisch auf allen Ihren Geräten synchronisiert. Beginnen Sie auf Ihrem Telefon und setzen Sie nahtlos auf Ihrem Tablet oder Computer fort."
     },
     {
       question: "Was ist im kostenlosen Plan enthalten?",
@@ -90,10 +82,6 @@ const faqContent = {
         answer: "Sì! Puoi creare mazzi personalizzati illimitati con i tuoi contenuti. Aggiungi testo, immagini e anche audio per renderle più efficaci."
       },
       {
-        question: "I miei progressi sono sincronizzati tra i dispositivi?",
-        answer: "Assolutamente. I tuoi progressi sono sincronizzati automaticamente su tutti i dispositivi. Inizia sul telefono e continua su tablet o computer."
-      },
-      {
         question: "Cosa include il piano gratuito?",
         answer: "Il piano gratuito include funzioni base delle flashcard, creazione limitata dei mazzi e mazzi della community. Passa a Premium per mazzi illimitati, assistenza AI e analytics avanzate."
       }
@@ -118,10 +106,6 @@ const faqContent = {
       {
         question: "Posso criar meus próprios baralhos?",
         answer: "Sim! Você pode criar baralhos personalizados ilimitados com seu próprio conteúdo. Adicione texto, imagens e até áudio para tornar as flashcards mais eficazes."
-      },
-      {
-        question: "Meu progresso é sincronizado entre dispositivos?",
-        answer: "Com certeza. Seu progresso é sincronizado automaticamente em todos os dispositivos. Comece no celular e continue no tablet ou computador."
       },
       {
         question: "O que está incluído no plano gratuito?",
@@ -150,10 +134,6 @@ const faqContent = {
         answer: "Ναι! Μπορείτε να δημιουργήσετε απεριόριστα προσαρμοσμένα decks με το δικό σας περιεχόμενο."
       },
       {
-        question: "Συγχρονίζεται η πρόοδός μου μεταξύ συσκευών;",
-        answer: "Απολύτως. Η πρόοδος συγχρονίζεται αυτόματα σε όλες τις συσκευές σας."
-      },
-      {
         question: "Τι περιλαμβάνει το δωρεάν πλάνο;",
         answer: "Το δωρεάν πλάνο περιλαμβάνει βασικές λειτουργίες καρτών, περιορισμένη δημιουργία decks και decks κοινότητας."
       }
@@ -178,10 +158,6 @@ const faqContent = {
       {
         question: "¿Puedo crear mis propios mazos?",
         answer: "¡Sí! Puedes crear mazos personalizados ilimitados con tu propio contenido. Añade texto, imágenes e incluso audio."
-      },
-      {
-        question: "¿Se sincroniza mi progreso entre dispositivos?",
-        answer: "Sí. Tu progreso se sincroniza automáticamente en todos tus dispositivos."
       },
       {
         question: "¿Qué incluye el plan gratuito?",

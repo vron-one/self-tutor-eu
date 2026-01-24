@@ -23,6 +23,17 @@ const Download = () => {
         description: "Download for Android devices",
         features: ["Optimized for Android 10+", "Works offline", "Sync across devices"]
       },
+      testflight: {
+        title: "iOS TestFlight Beta",
+        description: "Help us test the app on iOS with TestFlight.",
+        cta: "Open TestFlight"
+      },
+      androidTesting: {
+        title: "Android Testing Program",
+        description: "Help us test the app on Android and get early access.",
+        comingSoon: "Internal App Sharing (coming soon)",
+        emailCta: "Email us to become a tester"
+      },
       whyDownload: "Why Download SelfTutor?",
       benefits: [
         "Learn anywhere, anytime - even offline",
@@ -45,6 +56,17 @@ const Download = () => {
         title: "Android App",
         description: "Für Android-Geräte herunterladen",
         features: ["Optimiert für Android 10+", "Funktioniert offline", "Geräteübergreifende Synchronisation"]
+      },
+      testflight: {
+        title: "iOS TestFlight Beta",
+        description: "Hilf uns, die App auf iOS mit TestFlight zu testen.",
+        cta: "TestFlight öffnen"
+      },
+      androidTesting: {
+        title: "Android Testprogramm",
+        description: "Hilf uns, die App auf Android zu testen und erhalte frühen Zugang.",
+        comingSoon: "Internal App Sharing (kommt bald)",
+        emailCta: "Schreib uns, um Testmitglied zu werden"
       },
       whyDownload: "Warum SelfTutor herunterladen?",
       benefits: [
@@ -137,6 +159,46 @@ const Download = () => {
                   alt="Get it on Google Play" 
                   className="h-12 mx-auto"
                 />
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Beta Testing Section */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+          <Card className="border-border bg-card">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl">{t.testflight.title}</CardTitle>
+              <p className="text-muted-foreground">{t.testflight.description}</p>
+            </CardHeader>
+            <CardContent className="flex justify-center">
+              <a
+                href="https://testflight.apple.com/v1/app/6758100911?build=195206620"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("download_click", { platform: "ios_testflight", source: "download_page" })}
+              >
+                <Button variant="default">{t.testflight.cta}</Button>
+              </a>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border bg-card">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl">{t.androidTesting.title}</CardTitle>
+              <p className="text-muted-foreground">{t.androidTesting.description}</p>
+            </CardHeader>
+            <CardContent className="flex flex-col items-center gap-3">
+              <Button variant="secondary" disabled className="w-full sm:w-auto">
+                {t.androidTesting.comingSoon}
+              </Button>
+              <a
+                href="mailto:selftutor@vron.one?subject=Android%20Testing%20Program"
+                onClick={() => trackEvent("contact_click", { source: "download_page", topic: "android_testing" })}
+              >
+                <Button variant="default" className="w-full sm:w-auto">
+                  {t.androidTesting.emailCta}
+                </Button>
               </a>
             </CardContent>
           </Card>

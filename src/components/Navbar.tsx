@@ -2,11 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Download } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import logo from "@/assets/logo.png";
 import LanguagePicker from "@/components/LanguagePicker";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -63,17 +58,13 @@ const Navbar = () => {
             <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
               {t("nav.pricing")}
             </a>
-            <Popover>
-              <PopoverTrigger asChild>
-                <button className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors">
-                  <Download className="w-4 h-4" />
-                  {t("nav.downloadApp")}
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto bg-popover border border-border shadow-lg z-50">
-                <DownloadButtons />
-              </PopoverContent>
-            </Popover>
+            <Link
+              to="/download"
+              className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              {t("nav.downloadApp")}
+            </Link>
             <LanguagePicker />
             <Link to="/download">
               <Button variant="default">{t("nav.getStarted")}</Button>
