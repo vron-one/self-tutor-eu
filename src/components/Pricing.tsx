@@ -23,7 +23,7 @@ const Pricing = () => {
     },
     {
       nameKey: "pricing.pro",
-      price: "€9.50",
+      price: "€9.90",
       periodKey: "pricing.oneTime",
       descKey: "pricing.proDesc",
       features: [

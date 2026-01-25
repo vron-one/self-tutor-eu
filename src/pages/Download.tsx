@@ -26,6 +26,7 @@ const Download = () => {
       testflight: {
         title: "iOS TestFlight Beta",
         description: "Help us test the app on iOS with TestFlight.",
+        note: "You need to install the TestFlight app from Apple before using the link.",
         cta: "Open TestFlight"
       },
       androidTesting: {
@@ -60,6 +61,7 @@ const Download = () => {
       testflight: {
         title: "iOS TestFlight Beta",
         description: "Hilf uns, die App auf iOS mit TestFlight zu testen.",
+        note: "Du musst zuerst die TestFlight-App von Apple aus dem App Store installieren, bevor du den Link nutzt.",
         cta: "TestFlight öffnen"
       },
       androidTesting: {
@@ -75,6 +77,146 @@ const Download = () => {
         "Verfolgen Sie Ihren Fortschritt mit detaillierten Statistiken",
         "Spaced Repetition für besseres Behalten",
         "Schöne, ablenkungsfreie Oberfläche"
+      ]
+    },
+    it: {
+      title: "Scarica SelfTutor",
+      subtitle: "Scarica l'app sul tuo dispositivo preferito e inizia a imparare oggi",
+      backHome: "Torna alla Home",
+      ios: {
+        title: "App iOS",
+        description: "Scarica per iPhone e iPad",
+        features: ["Ottimizzato per iOS 15+", "Funziona offline", "Sincronizzazione tra dispositivi"]
+      },
+      android: {
+        title: "App Android",
+        description: "Scarica per dispositivi Android",
+        features: ["Ottimizzato per Android 10+", "Funziona offline", "Sincronizzazione tra dispositivi"]
+      },
+      testflight: {
+        title: "Beta iOS TestFlight",
+        description: "Aiutaci a testare l'app su iOS con TestFlight.",
+        note: "Devi prima installare l'app TestFlight di Apple dall'App Store per usare il link.",
+        cta: "Apri TestFlight"
+      },
+      androidTesting: {
+        title: "Programma di test Android",
+        description: "Aiutaci a testare l'app su Android e ottieni accesso anticipato.",
+        comingSoon: "Internal App Sharing (in arrivo)",
+        emailCta: "Scrivici per diventare tester"
+      },
+      whyDownload: "Perché scaricare SelfTutor?",
+      benefits: [
+        "Impara ovunque, in qualsiasi momento - anche offline",
+        "Crea mazzi di flashcard illimitati",
+        "Monitora i tuoi progressi con statistiche dettagliate",
+        "Ripetizione spaziata per una migliore memorizzazione",
+        "Interfaccia bella e senza distrazioni"
+      ]
+    },
+    pt: {
+      title: "Baixar SelfTutor",
+      subtitle: "Baixe o app no seu dispositivo favorito e comece a aprender hoje",
+      backHome: "Voltar para a Página Inicial",
+      ios: {
+        title: "App iOS",
+        description: "Baixe para iPhone e iPad",
+        features: ["Otimizado para iOS 15+", "Funciona offline", "Sincronização entre dispositivos"]
+      },
+      android: {
+        title: "App Android",
+        description: "Baixe para dispositivos Android",
+        features: ["Otimizado para Android 10+", "Funciona offline", "Sincronização entre dispositivos"]
+      },
+      testflight: {
+        title: "Beta iOS TestFlight",
+        description: "Ajude-nos a testar o app no iOS com o TestFlight.",
+        note: "Você precisa instalar primeiro o app TestFlight da Apple pela App Store para usar o link.",
+        cta: "Abrir TestFlight"
+      },
+      androidTesting: {
+        title: "Programa de testes Android",
+        description: "Ajude-nos a testar o app no Android e tenha acesso antecipado.",
+        comingSoon: "Internal App Sharing (em breve)",
+        emailCta: "Envie um e-mail para virar tester"
+      },
+      whyDownload: "Por que baixar o SelfTutor?",
+      benefits: [
+        "Aprenda em qualquer lugar, a qualquer hora - até offline",
+        "Crie baralhos de flashcards ilimitados",
+        "Acompanhe seu progresso com estatísticas detalhadas",
+        "Repetição espaçada para melhor retenção",
+        "Interface bonita e sem distrações"
+      ]
+    },
+    gr: {
+      title: "Λήψη SelfTutor",
+      subtitle: "Κατεβάστε την εφαρμογή στη συσκευή σας και ξεκινήστε να μαθαίνετε σήμερα",
+      backHome: "Επιστροφή στην Αρχική",
+      ios: {
+        title: "Εφαρμογή iOS",
+        description: "Λήψη για iPhone και iPad",
+        features: ["Βελτιστοποιημένο για iOS 15+", "Λειτουργεί offline", "Συγχρονισμός μεταξύ συσκευών"]
+      },
+      android: {
+        title: "Εφαρμογή Android",
+        description: "Λήψη για συσκευές Android",
+        features: ["Βελτιστοποιημένο για Android 10+", "Λειτουργεί offline", "Συγχρονισμός μεταξύ συσκευών"]
+      },
+      testflight: {
+        title: "iOS TestFlight Beta",
+        description: "Βοηθήστε μας να δοκιμάσουμε την εφαρμογή σε iOS με το TestFlight.",
+        note: "Πρέπει πρώτα να εγκαταστήσετε την εφαρμογή TestFlight της Apple από το App Store για να χρησιμοποιήσετε τον σύνδεσμο.",
+        cta: "Άνοιγμα TestFlight"
+      },
+      androidTesting: {
+        title: "Πρόγραμμα δοκιμών Android",
+        description: "Βοηθήστε μας να δοκιμάσουμε την εφαρμογή σε Android και αποκτήστε πρόωρη πρόσβαση.",
+        comingSoon: "Internal App Sharing (σύντομα)",
+        emailCta: "Στείλτε μας email για να γίνετε tester"
+      },
+      whyDownload: "Γιατί να κατεβάσετε το SelfTutor;",
+      benefits: [
+        "Μάθετε οπουδήποτε, οποτεδήποτε - ακόμα και offline",
+        "Δημιουργήστε απεριόριστες δέσμες καρτών",
+        "Παρακολουθήστε την πρόοδό σας με λεπτομερή στατιστικά",
+        "Διαστημική επανάληψη για καλύτερη απομνημόνευση",
+        "Όμορφο, χωρίς περισπασμούς περιβάλλον"
+      ]
+    },
+    sp: {
+      title: "Descargar SelfTutor",
+      subtitle: "Obtén la app en tu dispositivo favorito y empieza a aprender hoy",
+      backHome: "Volver al Inicio",
+      ios: {
+        title: "App iOS",
+        description: "Descargar para iPhone y iPad",
+        features: ["Optimizado para iOS 15+", "Funciona sin conexión", "Sincronización entre dispositivos"]
+      },
+      android: {
+        title: "App Android",
+        description: "Descargar para dispositivos Android",
+        features: ["Optimizado para Android 10+", "Funciona sin conexión", "Sincronización entre dispositivos"]
+      },
+      testflight: {
+        title: "Beta iOS TestFlight",
+        description: "Ayúdanos a probar la app en iOS con TestFlight.",
+        note: "Primero debes instalar la app TestFlight de Apple desde la App Store para usar el enlace.",
+        cta: "Abrir TestFlight"
+      },
+      androidTesting: {
+        title: "Programa de pruebas Android",
+        description: "Ayúdanos a probar la app en Android y obtén acceso anticipado.",
+        comingSoon: "Internal App Sharing (próximamente)",
+        emailCta: "Envíanos un correo para ser tester"
+      },
+      whyDownload: "¿Por qué descargar SelfTutor?",
+      benefits: [
+        "Aprende en cualquier lugar y momento - incluso sin conexión",
+        "Crea mazos de tarjetas ilimitados",
+        "Sigue tu progreso con estadísticas detalladas",
+        "Repetición espaciada para mejor retención",
+        "Interfaz bonita y sin distracciones"
       ]
     }
   };
@@ -170,6 +312,7 @@ const Download = () => {
             <CardHeader className="text-center">
               <CardTitle className="text-2xl">{t.testflight.title}</CardTitle>
               <p className="text-muted-foreground">{t.testflight.description}</p>
+              <p className="text-sm text-muted-foreground mt-2">{t.testflight.note}</p>
             </CardHeader>
             <CardContent className="flex justify-center">
               <a
