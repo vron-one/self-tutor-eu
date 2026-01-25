@@ -173,7 +173,7 @@ const Download = () => {
             </CardHeader>
             <CardContent className="flex justify-center">
               <a
-                href="https://testflight.apple.com/v1/app/6758100911?build=195206620"
+                href="https://testflight.apple.com/v1/app/6758100911?build=195283673"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("download_click", { platform: "ios_testflight", source: "download_page" })}
