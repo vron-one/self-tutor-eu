@@ -20,7 +20,7 @@ const Download = () => {
       },
       android: {
         title: "Android App",
-        description: "Download for Android devices",
+        description: "Download for Android devices.",
         features: ["Optimized for Android 10+", "Works offline", "Sync across devices"]
       },
       testflight: {
@@ -32,7 +32,7 @@ const Download = () => {
       androidTesting: {
         title: "Android Testing Program",
         description: "Help us test the app on Android and get early access.",
-        comingSoon: "Internal App Sharing (coming soon)",
+        internalTestCta: "Open Android internal testing",
         emailCta: "Email us to become a tester"
       },
       whyDownload: "Why Download SelfTutor?",
@@ -55,7 +55,7 @@ const Download = () => {
       },
       android: {
         title: "Android App",
-        description: "Für Android-Geräte herunterladen",
+        description: "Für Android-Geräte herunterladen.",
         features: ["Optimiert für Android 10+", "Funktioniert offline", "Geräteübergreifende Synchronisation"]
       },
       testflight: {
@@ -67,7 +67,7 @@ const Download = () => {
       androidTesting: {
         title: "Android Testprogramm",
         description: "Hilf uns, die App auf Android zu testen und erhalte frühen Zugang.",
-        comingSoon: "Internal App Sharing (kommt bald)",
+        internalTestCta: "Android intern testen",
         emailCta: "Schreib uns, um Testmitglied zu werden"
       },
       whyDownload: "Warum SelfTutor herunterladen?",
@@ -90,7 +90,7 @@ const Download = () => {
       },
       android: {
         title: "App Android",
-        description: "Scarica per dispositivi Android",
+        description: "Scarica per dispositivi Android.",
         features: ["Ottimizzato per Android 10+", "Funziona offline", "Sincronizzazione tra dispositivi"]
       },
       testflight: {
@@ -102,7 +102,7 @@ const Download = () => {
       androidTesting: {
         title: "Programma di test Android",
         description: "Aiutaci a testare l'app su Android e ottieni accesso anticipato.",
-        comingSoon: "Internal App Sharing (in arrivo)",
+        internalTestCta: "Apri test interni Android",
         emailCta: "Scrivici per diventare tester"
       },
       whyDownload: "Perché scaricare SelfTutor?",
@@ -125,7 +125,7 @@ const Download = () => {
       },
       android: {
         title: "App Android",
-        description: "Baixe para dispositivos Android",
+        description: "Baixe para dispositivos Android.",
         features: ["Otimizado para Android 10+", "Funciona offline", "Sincronização entre dispositivos"]
       },
       testflight: {
@@ -137,7 +137,7 @@ const Download = () => {
       androidTesting: {
         title: "Programa de testes Android",
         description: "Ajude-nos a testar o app no Android e tenha acesso antecipado.",
-        comingSoon: "Internal App Sharing (em breve)",
+        internalTestCta: "Abrir testes internos Android",
         emailCta: "Envie um e-mail para virar tester"
       },
       whyDownload: "Por que baixar o SelfTutor?",
@@ -160,7 +160,7 @@ const Download = () => {
       },
       android: {
         title: "Εφαρμογή Android",
-        description: "Λήψη για συσκευές Android",
+        description: "Λήψη για συσκευές Android.",
         features: ["Βελτιστοποιημένο για Android 10+", "Λειτουργεί offline", "Συγχρονισμός μεταξύ συσκευών"]
       },
       testflight: {
@@ -172,7 +172,7 @@ const Download = () => {
       androidTesting: {
         title: "Πρόγραμμα δοκιμών Android",
         description: "Βοηθήστε μας να δοκιμάσουμε την εφαρμογή σε Android και αποκτήστε πρόωρη πρόσβαση.",
-        comingSoon: "Internal App Sharing (σύντομα)",
+        internalTestCta: "Άνοιγμα εσωτερικών δοκιμών Android",
         emailCta: "Στείλτε μας email για να γίνετε tester"
       },
       whyDownload: "Γιατί να κατεβάσετε το SelfTutor;",
@@ -195,7 +195,7 @@ const Download = () => {
       },
       android: {
         title: "App Android",
-        description: "Descargar para dispositivos Android",
+        description: "Descargar para dispositivos Android.",
         features: ["Optimizado para Android 10+", "Funciona sin conexión", "Sincronización entre dispositivos"]
       },
       testflight: {
@@ -207,7 +207,7 @@ const Download = () => {
       androidTesting: {
         title: "Programa de pruebas Android",
         description: "Ayúdanos a probar la app en Android y obtén acceso anticipado.",
-        comingSoon: "Internal App Sharing (próximamente)",
+        internalTestCta: "Abrir pruebas internas de Android",
         emailCta: "Envíanos un correo para ser tester"
       },
       whyDownload: "¿Por qué descargar SelfTutor?",
@@ -332,9 +332,16 @@ const Download = () => {
               <p className="text-muted-foreground">{t.androidTesting.description}</p>
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-3">
-              <Button variant="secondary" disabled className="w-full sm:w-auto">
-                {t.androidTesting.comingSoon}
-              </Button>
+              <a
+                href="https://play.google.com/apps/internaltest/4700323829434176789"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("download_click", { platform: "android_internal_test", source: "download_page" })}
+              >
+                <Button variant="secondary" className="w-full sm:w-auto">
+                  {t.androidTesting.internalTestCta}
+                </Button>
+              </a>
               <a
                 href="mailto:selftutor@vron.one?subject=Android%20Testing%20Program"
                 onClick={() => trackEvent("contact_click", { source: "download_page", topic: "android_testing" })}
